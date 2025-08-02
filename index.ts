@@ -31,6 +31,16 @@ async function replace(oldString: string, newString: string) {
 
 function replaceAll(file: string, oldString: string, newString: string) {
   const fileContent = readFileSync(file, 'utf8')
+  if (
+    [
+      //
+      `import { replace } from '@brillout/replace'`,
+      `import { replace } from "@brillout/replace"`,
+    ].some((i) => fileContent.includes(i))
+  ) {
+    console.log(`Skipped ${file}`)
+    return
+  }
   const fileContentMod = fileContent.replaceAll(oldString, newString)
   if (fileContent !== fileContentMod) {
     console.log(`Modified ${file}`)
