@@ -1,18 +1,12 @@
+export { replace }
+export { logError }
+export { colorRed }
+
 import { shell } from '@brillout/shell'
 import pc from '@brillout/picocolors'
-import assert from 'node:assert'
 import { readFileSync, writeFileSync } from 'node:fs'
 
-main()
-
-async function main() {
-  const cliArgs = parseCliArgs()
-  await apply(cliArgs)
-}
-
-async function apply(cliArgs: CliArgs) {
-  const { oldString, newString } = cliArgs
-
+async function replace(oldString: string, newString: string) {
   if (await hasRepoChanges()) {
     console.log(colorRed('❌ Commit all changes before running this command.'))
     return
@@ -23,7 +17,7 @@ async function apply(cliArgs: CliArgs) {
     `➡️  Replacing ${pc.cyan(oldString)} to ${pc.cyan(newString)} in ${pc.bold(String(files.length))} files...`,
   )
   files.forEach((file) => {
-    replaceAll(file, cliArgs)
+    replaceAll(file, oldString, newString)
   })
 
   if (await hasRepoChanges()) {
@@ -35,8 +29,7 @@ async function apply(cliArgs: CliArgs) {
   }
 }
 
-function replaceAll(file: string, cliArgs: CliArgs) {
-  const { oldString, newString } = cliArgs
+function replaceAll(file: string, oldString: string, newString: string) {
   const fileContent = readFileSync(file, 'utf8')
   const fileContentMod = fileContent.replaceAll(oldString, newString)
   if (fileContent !== fileContentMod) {
@@ -64,47 +57,9 @@ async function hasRepoChanges() {
   return res.stdout.trim().length > 0
 }
 
-type CliArgs = ReturnType<typeof parseCliArgs>
-function parseCliArgs() {
-  const cliArgs = process.argv.slice(2)
-  if (cliArgs.includes('--help') || cliArgs.includes('-h')) {
-    showHelp()
-    process.exit(0)
-  }
-  const [oldString, newString] = cliArgs
-  if (!oldString) {
-    showHelp()
-    logError(`Missing argument ${pc.bold('oldString')}`)
-    process.exit(1)
-  }
-  if (!newString) {
-    showHelp()
-    logError(`Missing argument ${pc.bold('newString')}`)
-    process.exit(1)
-  }
-  if (cliArgs.length > 2) {
-    showHelp()
-    logError(`Too many arguments. Expected ${pc.cyan('2')} but got ${pc.cyan(String(cliArgs.length))} instead.`)
-    process.exit(1)
-  }
-  return { oldString, newString }
-}
-
 function logError(msg: string) {
   console.log(colorRed(msg))
 }
 function colorRed(msg: string) {
   return pc.red(pc.bold(msg))
-}
-
-function showHelp() {
-  console.log(
-    [
-      'Usage:',
-      `  ${pc.dim('$')} ${pc.bold('replace oldString newString')}                  ${pc.dim('#')} Replace ${pc.cyan('oldString')} with ${pc.cyan('newString')}`,
-      `  ${pc.dim('$')} ${pc.bold('replace "old string" "new string"')}            ${pc.dim('#')} Replace ${pc.cyan('old string')} with ${pc.cyan('new string')}`,
-      `  ${pc.dim('$')} ${pc.bold('replace "old \\"string\\"" "new \\"string\\""')}    ${pc.dim('#')} Replace ${pc.cyan('old "string"')} with ${pc.cyan('new "string"')}`,
-      `  ${pc.dim('$')} ${pc.bold('replace --help')}                               ${pc.dim('#')} show this help`,
-    ].join('\n'),
-  )
 }
