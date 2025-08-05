@@ -9,9 +9,7 @@ import { colorRed } from './utils'
 
 async function replace(oldString: string, newString: string) {
   const files = await getFiles()
-  console.log(
-    `➡️  Replacing ${pc.cyan(oldString)} to ${pc.cyan(newString)} in ${pc.bold(String(files.length))} files...`,
-  )
+  console.log(`➡️  Replacing ${pc.cyan(oldString)} to ${pc.cyan(newString)}...`)
   files.forEach((file) => {
     replaceFile(file, (fileContent) => fileContent.replaceAll(oldString, newString))
   })
@@ -61,6 +59,9 @@ async function getFiles() {
   if (files.length === 0) {
     throw new Error(colorRed('No files found'))
   }
+
+  console.log(`➡️  Found ${pc.bold(String(files.length))} files`)
+
   return files
 }
 
