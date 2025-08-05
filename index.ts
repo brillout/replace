@@ -18,7 +18,7 @@ async function replace(oldString: string, newString: string) {
     `➡️  Replacing ${pc.cyan(oldString)} to ${pc.cyan(newString)} in ${pc.bold(String(files.length))} files...`,
   )
   files.forEach((file) => {
-    replaceAll(file, oldString, newString)
+    replaceFile(file, (fileContent) => fileContent.replaceAll(oldString, newString))
   })
 
   if (await hasRepoChanges()) {
@@ -30,7 +30,8 @@ async function replace(oldString: string, newString: string) {
   }
 }
 
-function replaceAll(file: string, oldString: string, newString: string) {
+type Replacer = (fileContent: string) => string
+function replaceFile(file: string, replacer: Replacer) {
   const fileContent = readFileSync(file, 'utf8')
   if (
     [
@@ -42,7 +43,7 @@ function replaceAll(file: string, oldString: string, newString: string) {
     console.log(`Skipped ${file}`)
     return
   }
-  const fileContentMod = fileContent.replaceAll(oldString, newString)
+  const fileContentMod = replacer(fileContent)
   if (fileContent !== fileContentMod) {
     console.log(`Modified ${file}`)
     writeFileSync(file, fileContentMod)
