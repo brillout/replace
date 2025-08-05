@@ -11,7 +11,6 @@ async function cli() {
 
 function parseCliArgs() {
   const cliArgs = process.argv.slice(2)
-  console.log(cliArgs)
   if (cliArgs.includes('--help') || cliArgs.includes('-h')) {
     showHelp()
     process.exit(0)
