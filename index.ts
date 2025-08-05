@@ -6,7 +6,7 @@ export { replaceFile }
 import { shell } from '@brillout/shell'
 import pc from '@brillout/picocolors'
 import { readFileSync, writeFileSync } from 'node:fs'
-import { colorRed } from './utils'
+import { colorRed } from './utils.js'
 
 async function replace(oldString: string, newString: string) {
   const files = await getFiles()
