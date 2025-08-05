@@ -1,3 +1,13 @@
+## [0.1.2](https://github.com/brillout/replace/compare/v0.1.1...v0.1.2) (2025-08-05)
+
+
+### Features
+
+* expose getFiles() ([1c81e6b](https://github.com/brillout/replace/commit/1c81e6b4bed747958452467467e79b7b201ee6ed))
+* expose replaceFile ([1a12fde](https://github.com/brillout/replace/commit/1a12fde5e70d9fcef305e348a4314c7dd9ca7491))
+
+
+
 ## [0.1.1](https://github.com/brillout/replace/compare/v0.1.0...v0.1.1) (2025-08-02)
 
 
