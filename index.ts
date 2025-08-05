@@ -1,6 +1,7 @@
 // Public API
 export { replace }
 export { getFiles }
+export { replaceFile }
 
 import { shell } from '@brillout/shell'
 import pc from '@brillout/picocolors'
