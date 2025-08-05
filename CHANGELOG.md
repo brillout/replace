@@ -1,3 +1,12 @@
+## [0.1.4](https://github.com/brillout/replace/compare/v0.1.3...v0.1.4) (2025-08-05)
+
+
+### Bug Fixes
+
+* remove debug log ([eb17645](https://github.com/brillout/replace/commit/eb1764541dfb94eaa52a3845f00a272c3bab89eb))
+
+
+
 ## [0.1.3](https://github.com/brillout/replace/compare/v0.1.2...v0.1.3) (2025-08-05)
 
 
