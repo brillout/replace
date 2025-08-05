@@ -1,10 +1,10 @@
+// Public API
 export { replace }
-export { logError }
-export { colorRed }
 
 import { shell } from '@brillout/shell'
 import pc from '@brillout/picocolors'
 import { readFileSync, writeFileSync } from 'node:fs'
+import { colorRed } from './utils'
 
 async function replace(oldString: string, newString: string) {
   if (await hasRepoChanges()) {
@@ -12,7 +12,7 @@ async function replace(oldString: string, newString: string) {
     return
   }
 
-  const files = await getGitFiles()
+  const files = await getFiles()
   console.log(
     `➡️  Replacing ${pc.cyan(oldString)} to ${pc.cyan(newString)} in ${pc.bold(String(files.length))} files...`,
   )
@@ -48,7 +48,7 @@ function replaceAll(file: string, oldString: string, newString: string) {
   }
 }
 
-async function getGitFiles() {
+async function getFiles() {
   // Preserve UTF-8 file paths.
   // https://github.com/vikejs/vike/issues/1658
   // https://stackoverflow.com/questions/22827239/how-to-make-git-properly-display-utf-8-encoded-pathnames-in-the-console-window/22828826#22828826
@@ -65,11 +65,4 @@ async function getGitFiles() {
 async function hasRepoChanges() {
   const res = await shell('git status --porcelain')
   return res.stdout.trim().length > 0
-}
-
-function logError(msg: string) {
-  console.log(colorRed(msg))
-}
-function colorRed(msg: string) {
-  return pc.red(pc.bold(msg))
 }

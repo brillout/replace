@@ -1,7 +1,8 @@
 cli()
 
+import { replace } from './index.js'
+import { logError } from './utils.js'
 import pc from '@brillout/picocolors'
-import { logError, replace } from './index.js'
 
 async function cli() {
   const { oldString, newString } = parseCliArgs()
