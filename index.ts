@@ -8,11 +8,6 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { colorRed } from './utils'
 
 async function replace(oldString: string, newString: string) {
-  if (await hasRepoChanges()) {
-    console.log(colorRed('❌ Commit all changes before running this command.'))
-    return
-  }
-
   const files = await getFiles()
   console.log(
     `➡️  Replacing ${pc.cyan(oldString)} to ${pc.cyan(newString)} in ${pc.bold(String(files.length))} files...`,
@@ -51,6 +46,11 @@ function replaceFile(file: string, replacer: Replacer) {
 }
 
 async function getFiles() {
+  if (await hasRepoChanges()) {
+    console.log(colorRed('❌ You must first commit all changes.'))
+    process.exit(1)
+  }
+
   // Preserve UTF-8 file paths.
   // https://github.com/vikejs/vike/issues/1658
   // https://stackoverflow.com/questions/22827239/how-to-make-git-properly-display-utf-8-encoded-pathnames-in-the-console-window/22828826#22828826
