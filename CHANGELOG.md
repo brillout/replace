@@ -1,3 +1,12 @@
+## [0.1.6](https://github.com/brillout/replace/compare/v0.1.5...v0.1.6) (2025-09-03)
+
+
+### Bug Fixes
+
+* fix repo link ([548065e](https://github.com/brillout/replace/commit/548065eecbbbb75f88368e5f5377ddbc85419b38))
+
+
+
 ## [0.1.5](https://github.com/brillout/react-streaming/compare/v0.1.4...v0.1.5) (2025-09-03)
 
 

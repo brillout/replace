@@ -1,6 +1,6 @@
 {
   "name": "@brillout/replace",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "dependencies": {
     "@brillout/picocolors": "^1.0.28",
     "@brillout/shell": "^0.2.1"
