@@ -1,3 +1,13 @@
+## [0.1.5](https://github.com/brillout/react-streaming/compare/v0.1.4...v0.1.5) (2025-09-03)
+
+
+### Bug Fixes
+
+* add license ([e5197b8](https://github.com/brillout/react-streaming/commit/e5197b881fe178cabc65daa5fe180df0380b4e5a))
+* add repo link ([08a7eba](https://github.com/brillout/react-streaming/commit/08a7ebae15dcfd024df1db762adfdbc5c43c6c6d))
+
+
+
 ## [0.1.4](https://github.com/brillout/replace/compare/v0.1.3...v0.1.4) (2025-08-05)
 
 
