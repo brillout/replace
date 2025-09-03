@@ -12,10 +12,6 @@ You can now run the CLI (`$ replace`) and API (`import { replace } from '@brillo
 
 ## CLI
 
-> [!NOTE]
-> For strings with complex shell escaping, we recommend using [the API](#API) instead.
-
-
 Replace `oldString` with `newString`:
 ```shell
 replace oldString newString
@@ -35,6 +31,9 @@ Show help:
 ```shell
 replace --help
 ```
+
+> [!NOTE]
+> For strings with complex shell escaping, we recommend using [the API](#API) instead.
 
 
 ## API
