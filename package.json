@@ -27,6 +27,7 @@
     "./dist"
   ],
   "bin": "./bin.js",
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
