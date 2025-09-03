@@ -1,12 +1,14 @@
 {
   "name": "@brillout/replace",
   "version": "0.1.4",
-  "main": "./dist/index.js",
   "dependencies": {
     "@brillout/picocolors": "^1.0.28",
     "@brillout/shell": "^0.2.1"
   },
   "repository": "github:brillout/react-streaming",
+  "main": "./dist/index.js",
+  "bin": "./bin.js",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -27,10 +29,8 @@
   "files": [
     "./dist"
   ],
-  "bin": "./bin.js",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
-  },
-  "type": "module"
+  }
 }
